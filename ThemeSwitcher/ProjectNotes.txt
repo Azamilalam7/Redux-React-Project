@@ -1,0 +1,21 @@
+We create a custom hook named useLocaltorage which take two args namely key , defaultValue
+{useLocaltorage(key , defaultValue) {
+    [value ,setValue] = useState ( () => { //destructure two values from usetate
+        {let currentValue; } // initialize currentValue
+
+        try {
+            currentValue = JSON.parse(localStorage.getItem(key) || Stringify(defaultValue))
+        }catch (error) {
+            console.log(error);
+            currentValue = defaultValue;
+        }
+
+        return currentValue; // this currentvalue will be the defaultValue of useState
+    }) 
+}}
+
+useEffect (() => {
+    localStorage.setItem(key , JSON.Stringify(defaultValue))
+}, [key ,defaultValue])
+
+return [value ,setValue]
